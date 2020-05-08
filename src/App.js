@@ -4,18 +4,37 @@ import { SearchBar, VideoDetail, VideoList } from './components';
 import youtube from './api/youtube';
 
 export class App extends Component {
+  state = {
+    videos: [],
+    selectedVideo: null,
+  };
+
+  componentDidMount() {
+    this.handleSubmit('pdf generation with react and node');
+  }
+
+  onVideoSelect = (video) => {
+    this.setState({ selectedVideo: video });
+  };
+
   handleSubmit = async (searchTerm) => {
     const response = await youtube.get('search', {
       params: {
         part: 'snippet',
         maxResults: 5,
-        key: 'AIzaSyCStNQBcibyGypy17t23L2RZNnflvHnfNU',
+        key: 'AIzaSyDgiaqEgcl9z0mKQA7yitsPt5CFKmK_WXc',
         q: searchTerm,
       },
     });
-    console.log(response);
+
+    this.setState({
+      videos: response.data.items,
+      selectedVideo: response.data.items[0],
+    });
   };
+
   render() {
+    const { selectedVideo, videos } = this.state;
     return (
       <Grid justify='center' container spacing={10}>
         <Grid item xs={12}>
@@ -24,10 +43,10 @@ export class App extends Component {
               <SearchBar onFormSubmit={this.handleSubmit} />
             </Grid>
             <Grid item xs={8}>
-              <VideoDetail />
+              <VideoDetail video={selectedVideo} />
             </Grid>
             <Grid item xs={4}>
-              {/* <VideoList></VideoList> */}
+              <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
             </Grid>
           </Grid>
         </Grid>
