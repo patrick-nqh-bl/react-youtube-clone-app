@@ -4,3 +4,6 @@
    > https://www.youtube.com/watch?v=VPVzx1ZOVuw
 
 ##### Thank to JavaScript Mastery Youtube channel
+
+2. Link deployed on Netlify:
+   > https://romantic-kowalevski-17ec55.netlify.app/

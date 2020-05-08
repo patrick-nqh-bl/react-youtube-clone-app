@@ -10,7 +10,7 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    this.handleSubmit('pdf generation with react and node');
+    this.handleSubmit('Manchester City');
   }
 
   onVideoSelect = (video) => {
